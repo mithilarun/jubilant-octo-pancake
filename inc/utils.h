@@ -1,5 +1,5 @@
-#ifndef _UTILS_H_
-#define _UTILS_H_
+#ifndef UTILS_H
+#define UTILS_H
 
 /*
  * Copyright (C) 2016, Mithil Arun
@@ -26,4 +26,5 @@ int bit_rotr(const int a, int pos);
 int bit_compl(const int a);
 
 int main(int argc, char *argv[]);
-#endif
+
+#endif /* UTILS_H */
