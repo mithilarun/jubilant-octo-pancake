@@ -1,3 +1,6 @@
+#ifndef UTILS_H
+#define UTILS_H
+
 /*
  * Copyright (C) 2016, Mithil Arun
  *
@@ -15,4 +18,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "utils.h"
+#include <errno.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef unsigned int uint_t;
+
+uint_t octo_bit_or(const uint_t a, const uint_t b);
+uint_t octo_bit_and(const uint_t a, const uint_t b);
+uint_t octo_bit_xor(const uint_t a, const uint_t b);
+uint_t octo_bit_rotl(const uint_t a, uint_t pos);
+uint_t octo_bit_rotr(const uint_t a, uint_t pos);
+uint_t octo_bit_compl(const uint_t a);
+
+int main(int argc, char *argv[]);
+
+#endif /* UTILS_H */

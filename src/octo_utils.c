@@ -15,10 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "utils.h"
+#include "octo_utils.h"
 
-int
-main(int argc, char *argv[])
+void *
+octo_malloc(size_t size)
 {
-	return (0);
+	void *tmp;
+
+	tmp = (void *)malloc(size);
+	bzero(tmp, size);
+	return (tmp);
 }

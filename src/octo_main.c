@@ -1,6 +1,3 @@
-#ifndef UTILS_H
-#define UTILS_H
-
 /*
  * Copyright (C) 2016, Mithil Arun
  *
@@ -18,13 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-int bit_or(const int a, const int b);
-int bit_and(const int a, const int b);
-int bit_xor(const int a, const int b);
-int bit_rotl(const int a, int pos);
-int bit_rotr(const int a, int pos);
-int bit_compl(const int a);
+#include "octo_utils.h"
 
-int main(int argc, char *argv[]);
-
-#endif /* UTILS_H */
+int
+main(int argc, char *argv[])
+{
+	return (0);
+}
