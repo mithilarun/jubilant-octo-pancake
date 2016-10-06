@@ -17,8 +17,70 @@
 
 #include "octo_utils.h"
 
+void
+octo_read_msg(octo_mesg_t *msg)
+{
+	/*
+	 * wc_cmd has size greater than OCTO_BUF_SZ so as to accomodate the
+	 * length of the "wc" command as well.
+	 */
+	char	wc_cmd[OCTO_BUF_SZ + 30];
+
+	char	fname[OCTO_BUF_SZ], wc_out[OCTO_BUF_SZ] = "";
+	FILE	*fp, *mfile;
+	int	count = 0;
+	char	*tok, *tmp;
+
+	printf("Enter file name\n");
+	scanf("%s", fname);
+
+	// Need to get size of data in file (# chars)
+	snprintf(wc_cmd, sizeof (wc_cmd), "/usr/bin/wc -c %s", fname);
+	fp = popen(wc_cmd, "r");
+	if (fp == NULL) {
+		printf("Failed to fetch size of file\n. Exiting.\n");
+		exit(-1);
+	}
+
+	while (fgets(wc_out, sizeof(wc_out) - 1, fp) != NULL);
+	pclose(fp);
+
+	tok = strtok(wc_out, " ");
+	if (tok == NULL) {
+		printf("Failed to parse char count\n");
+		exit(-1);
+	}
+	msg->size = (size_t)atoi(tok);
+
+	msg->msg = (char *)octo_malloc(msg->size);
+
+	tmp = msg->msg;
+	mfile = fopen(fname, "r");
+	if (mfile == NULL) {
+		printf("Failed to open file %s\n", fname);
+		exit(-1);
+	}
+	while (fgets(tmp, msg->size - count, mfile) != NULL) {
+		count += strlen(tmp) - 1;
+		tmp = tmp + strlen(tmp);
+	}
+
+	if (fclose(mfile) != 0) {
+		printf("Error: %s", strerror(errno));
+		exit(-1);
+	}
+}
+
+
+
+
 int
 main(int argc, char *argv[])
 {
+	octo_mesg_t	msg;
+
+	octo_read_msg(&msg);
+	printf("%s\n", msg.msg);
+
 	return (0);
 }
