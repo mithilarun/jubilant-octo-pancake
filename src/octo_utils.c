@@ -26,3 +26,74 @@ octo_malloc(size_t size)
 	bzero(tmp, size);
 	return (tmp);
 }
+
+uint_t
+octo_ch(const uint_t a, const uint_t b, const uint_t c)
+{
+	uint_t	res;
+
+	res = octo_bit_xor(octo_bit_or(a, b),
+	    octo_bit_or(octo_bit_compl(a), c));
+
+	return (res);
+}
+
+uint_t
+octo_maj(const uint_t a, const uint_t b, const uint_t c)
+{
+	uint_t	res, tmp;
+
+	tmp = octo_bit_xor(octo_bit_or(a, b), octo_bit_or(a, c));
+
+	res = octo_bit_xor(tmp, octo_bit_or(b, c));
+
+	return (res);
+}
+
+uint_t
+octo_sig1(const uint_t x)
+{
+	uint_t	res, tmp;
+
+	tmp = octo_bit_xor(octo_bit_rotr(x, 2), octo_bit_rotr(x, 13));
+
+	res = octo_bit_xor(tmp, octo_bit_rotr(x, 22));
+
+	return (res);
+}
+
+uint_t
+octo_sig2(const uint_t x)
+{
+	uint_t	res, tmp;
+
+	tmp = octo_bit_xor(octo_bit_rotr(x, 6), octo_bit_rotr(x, 11));
+
+	res = octo_bit_xor(tmp, octo_bit_rotr(x, 25));
+
+	return (res);
+}
+
+uint_t
+octo_sig3(const uint_t x)
+{
+	uint_t	res, tmp;
+
+	tmp = octo_bit_xor(octo_bit_rotr(x, 7), octo_bit_rotr(x, 18));
+
+	res = octo_bit_xor(tmp, octo_bit_shr(x, 3));
+
+	return (res);
+}
+
+uint_t
+octo_sig4(const uint_t x)
+{
+	uint_t	res, tmp;
+
+	tmp = octo_bit_xor(octo_bit_rotr(x, 17), octo_bit_rotr(x, 19));
+
+	res = octo_bit_xor(tmp, octo_bit_shr(x, 10));
+
+	return (res);
+}
