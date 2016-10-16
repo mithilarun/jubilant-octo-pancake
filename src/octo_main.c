@@ -52,7 +52,9 @@ octo_read_msg(octo_mesg_t *msg)
 	}
 	msg->size = (size_t)atoi(tok);
 
-	msg->msg = (char *)octo_malloc(msg->size);
+	msg->buf_sz = (msg->size + 64) % 64;
+
+	msg->msg = (char *)octo_malloc(msg->buf_sz);
 
 	tmp = msg->msg;
 	mfile = fopen(fname, "r");
