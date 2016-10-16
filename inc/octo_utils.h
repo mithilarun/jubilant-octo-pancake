@@ -30,6 +30,7 @@ typedef unsigned int uint_t;
 
 typedef struct {
 	size_t	size;
+	size_t	buf_sz;
 	char	*msg;
 } octo_mesg_t;
 
