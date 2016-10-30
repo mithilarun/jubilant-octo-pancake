@@ -22,7 +22,7 @@ INCLUDES = -I../inc
 NAME = sha256
 VERSION = 0.0.1
 
-SRCS := octo_main.c octo_utils.c
+SRCS := octo_main.c octo_utils.c octo_pad.c
 
 BINDIR = ../bin/
 OBJS := $(addprefix $(BINDIR), $(SRCS:%.c=%.o))

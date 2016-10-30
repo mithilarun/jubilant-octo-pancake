@@ -54,4 +54,5 @@ void octo_read_msg(octo_mesg_t *msg);
 void *octo_malloc(size_t size);
 int main(int argc, char *argv[]);
 
+int octo_pad_msg(octo_mesg_t *msg);
 #endif /* UTILS_H */
