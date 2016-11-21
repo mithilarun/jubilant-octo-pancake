@@ -28,7 +28,7 @@ octo_read_msg(octo_mesg_t *msg)
 
 	char	fname[OCTO_BUF_SZ], wc_out[OCTO_BUF_SZ] = "";
 	FILE	*fp, *mfile;
-	int	count = 0;
+	int	count = 0, i;
 	char	*tok, *tmp;
 
 	printf("Enter file name\n");
@@ -52,7 +52,14 @@ octo_read_msg(octo_mesg_t *msg)
 	}
 	msg->size = (size_t)atoi(tok);
 
-	msg->buf_sz = (msg->size + 64) % 64;
+	for (i = 0; i < 64; i++) {
+		if ((msg->size + i) % 64 == 0) {
+			break;
+		}
+	}
+	msg->buf_sz = msg->size + i;
+
+	assert(msg->buf_sz >= msg->size);
 
 	msg->msg = (char *)octo_malloc(msg->buf_sz);
 

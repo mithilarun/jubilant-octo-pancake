@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2016, Mithil Arun
  *
@@ -24,8 +23,8 @@ octo_hash_compute(octo_mesg_t *msg)
 {
 	int *wt;
 	int N;
-	int i,iter = 0, count;
-	int a,b,c,d,e,f,g,h;
+	int i, t, iter = 0, count;
+	int a, b, c, d, e, f, g, h;
 	int T1, T2;
 
 	wt = (int*)malloc(sizeof(int)*64);
@@ -56,8 +55,8 @@ octo_hash_compute(octo_mesg_t *msg)
 		h = H7;
 
 		for(t = 0; t < 64; t++){
-			T1 = h + octo_sig2(e) + ch(e, f, g) + K[t] + wt[t];
-			T2 = octo_sig1(a) + maj(a, b, c);
+			T1 = h + octo_sig2(e) + octo_ch(e, f, g) + K[t] + wt[t];
+			T2 = octo_sig1(a) + octo_maj(a, b, c);
 			h = g;
 			g = f;
 			f = e;
@@ -67,7 +66,7 @@ octo_hash_compute(octo_mesg_t *msg)
 			b = a;
 			a = T1 + T2;
 		}
-		
+
 		H0 = a + H0;
 		H1 = b + H1;
 		H2 = c + H2;
