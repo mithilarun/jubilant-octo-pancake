@@ -18,6 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <assert.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -34,14 +35,14 @@ typedef struct {
 	char	*msg;
 } octo_mesg_t;
 
-uint_t octo_bit_or(const uint_t a, const uint_t b);
-uint_t octo_bit_and(const uint_t a, const uint_t b);
-uint_t octo_bit_xor(const uint_t a, const uint_t b);
-uint_t octo_bit_rotl(const uint_t a, uint_t pos);
-uint_t octo_bit_rotr(const uint_t a, uint_t pos);
-uint_t octo_bit_shl(const uint_t a, uint_t pos);
-uint_t octo_bit_shr(const uint_t a, uint_t pos);
-uint_t octo_bit_compl(const uint_t a);
+uint_t octo_bit_or(uint_t a, uint_t b);
+uint_t octo_bit_and(uint_t a, uint_t b);
+uint_t octo_bit_xor(uint_t a, uint_t b);
+uint_t octo_bit_rotl(uint_t a, uint_t pos);
+uint_t octo_bit_rotr(uint_t a, uint_t pos);
+uint_t octo_bit_shl(uint_t a, uint_t pos);
+uint_t octo_bit_shr(uint_t a, uint_t pos);
+uint_t octo_bit_compl(uint_t a);
 
 uint_t octo_ch(const uint_t a, const uint_t b, const uint_t c);
 uint_t octo_maj(const uint_t a, const uint_t b, const uint_t c);
@@ -54,5 +55,5 @@ void octo_read_msg(octo_mesg_t *msg);
 void *octo_malloc(size_t size);
 int main(int argc, char *argv[]);
 
-int octo_pad_msg(octo_mesg_t *msg);
+void octo_pad_msg(octo_mesg_t *msg);
 #endif /* UTILS_H */

@@ -17,12 +17,14 @@
 
 #include "octo_utils.h"
 
-int
+void
 octo_pad_msg(octo_mesg_t *msg)
 {
 	int	m_len, rem, shift;
-	int	*iter = msg->msg;
-	char 	*tmp;
+	int	*iter = (int*)msg->msg;
+	int	i;
+	char	*tmp;
+
 	m_len = (msg->size * 8);
 	if(m_len % 32 == 0) {
 		tmp = msg->msg + msg->size + 1;
@@ -30,15 +32,12 @@ octo_pad_msg(octo_mesg_t *msg)
 	} else {
 		rem = m_len % 32;
 		shift = 0x1;
-		for(int i = 0;i < (m_len / 32);i++){
+		for(i = 0;i < (m_len / 32);i++){
 			iter = iter + 1;
 		}
 		shift = octo_bit_shl(shift, (32 - rem));
 		octo_bit_or(*iter, shift);
 	}
-	iter = (msg->msg + msg->buf_sz) - 2;
+	iter = (int*)(msg->msg + msg->buf_sz) - 2;
 	*iter = (int64_t)m_len;
-
 }
-	
-	 
