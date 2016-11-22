@@ -89,7 +89,8 @@ main(int argc, char *argv[])
 	octo_mesg_t	msg;
 
 	octo_read_msg(&msg);
-	printf("%s\n", msg.msg);
+	octo_pad_msg(&msg);
+	octo_hash_compute(&msg);
 
 	return (0);
 }

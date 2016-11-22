@@ -52,6 +52,7 @@ uint_t octo_sig3(const uint_t x);
 uint_t octo_sig4(const uint_t x);
 
 void octo_read_msg(octo_mesg_t *msg);
+void octo_hash_compute(octo_mesg_t *msg);
 void *octo_malloc(size_t size);
 int main(int argc, char *argv[]);
 

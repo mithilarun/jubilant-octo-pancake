@@ -76,6 +76,7 @@ octo_hash_compute(octo_mesg_t *msg)
 		H6 = g + H6;
 		H7 = h + H7;
 	}
+	printf("%0xd%0xd%0xd%0xd%0xd%0xd%0xd%0xd\n", H0, H1, H2, H3, H4, H5, H6, H7);
 }
 
 
