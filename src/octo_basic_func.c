@@ -17,58 +17,58 @@
 
 #include "octo_utils.h"
 
-uint_t
-octo_bit_rotr(uint_t a, uint_t b)
+uint32_t
+octo_bit_rotr(uint32_t a, uint32_t b)
 {
 	a = (((a) >> (b)) | ((a) << (32-(b))));  //Rotate Right
 
 	return (a);
 }
 
-uint_t
-octo_bit_rotl(uint_t a, uint_t b)
+uint32_t
+octo_bit_rotl(uint32_t a, uint32_t b)
 {
 	a = (((a) << (b)) | ((a) >> (32-(b))));  //Rotate Left
 
 	return (a);
 }
 
-uint_t
-octo_bit_shr(uint_t a, uint_t b)
+uint32_t
+octo_bit_shr(uint32_t a, uint32_t b)
 {
 	a = ((a) >> (b));                         //Shift Right
 
 	return (a);
 }
 
-uint_t
-octo_bit_shl(uint_t a, uint_t b)
+uint32_t
+octo_bit_shl(uint32_t a, uint32_t b)
 {
 	a = ((a) << (b));                         //Shift Right
 
 	return (a);
 }
 
-uint_t
-octo_bit_compl(uint_t a)
+uint32_t
+octo_bit_compl(uint32_t a)
 {
 	return (~a);
 }
 
-uint_t
-octo_bit_or(uint_t a, uint_t b)
+uint32_t
+octo_bit_or(uint32_t a, uint32_t b)
 {
 	return (a | b);
 }
 
-uint_t
-octo_bit_and(uint_t a, uint_t b)
+uint32_t
+octo_bit_and(uint32_t a, uint32_t b)
 {
 	return (a & b);
 }
 
-uint_t
-octo_bit_xor(uint_t a, uint_t b)
+uint32_t
+octo_bit_xor(uint32_t a, uint32_t b)
 {
 	return (a ^ b);
 }

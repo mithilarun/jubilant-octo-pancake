@@ -20,10 +20,10 @@
 void
 octo_pad_msg(octo_mesg_t *msg)
 {
-	int	m_len, rem, shift;
-	int	*iter = (int*)msg->msg;
-	int	i;
-	char	*tmp;
+	int		m_len, rem, shift;
+	uint32_t	*iter = (uint32_t *)msg->msg;
+	int		i;
+	char		*tmp;
 
 	m_len = (msg->size * 8);
 	if(m_len % 32 == 0) {
@@ -35,9 +35,9 @@ octo_pad_msg(octo_mesg_t *msg)
 		for(i = 0;i < (m_len / 32);i++){
 			iter = iter + 1;
 		}
-		shift = octo_bit_shl(shift, (32 - rem));
+		shift = octo_bit_shl(shift, (32 - rem - 1));
 		octo_bit_or(*iter, shift);
 	}
-	iter = (int*)(msg->msg + msg->buf_sz) - 2;
-	*iter = (int64_t)m_len;
+	iter = (uint32_t *)(msg->msg + msg->buf_sz) - 2;
+	*iter = (uint64_t)m_len;
 }

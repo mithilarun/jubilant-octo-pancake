@@ -27,10 +27,10 @@ octo_malloc(size_t size)
 	return (tmp);
 }
 
-uint_t
-octo_ch(const uint_t a, const uint_t b, const uint_t c)
+uint32_t
+octo_ch(const uint32_t a, const uint32_t b, const uint32_t c)
 {
-	uint_t	res;
+	uint32_t	res;
 
 	res = octo_bit_xor(octo_bit_or(a, b),
 	    octo_bit_or(octo_bit_compl(a), c));
@@ -38,10 +38,10 @@ octo_ch(const uint_t a, const uint_t b, const uint_t c)
 	return (res);
 }
 
-uint_t
-octo_maj(const uint_t a, const uint_t b, const uint_t c)
+uint32_t
+octo_maj(const uint32_t a, const uint32_t b, const uint32_t c)
 {
-	uint_t	res, tmp;
+	uint32_t	res, tmp;
 
 	tmp = octo_bit_xor(octo_bit_or(a, b), octo_bit_or(a, c));
 
@@ -50,10 +50,10 @@ octo_maj(const uint_t a, const uint_t b, const uint_t c)
 	return (res);
 }
 
-uint_t
-octo_sig1(const uint_t x)
+uint32_t
+octo_sig1(const uint32_t x)
 {
-	uint_t	res, tmp;
+	uint32_t	res, tmp;
 
 	tmp = octo_bit_xor(octo_bit_rotr(x, 2), octo_bit_rotr(x, 13));
 
@@ -62,10 +62,10 @@ octo_sig1(const uint_t x)
 	return (res);
 }
 
-uint_t
-octo_sig2(const uint_t x)
+uint32_t
+octo_sig2(const uint32_t x)
 {
-	uint_t	res, tmp;
+	uint32_t	res, tmp;
 
 	tmp = octo_bit_xor(octo_bit_rotr(x, 6), octo_bit_rotr(x, 11));
 
@@ -74,10 +74,10 @@ octo_sig2(const uint_t x)
 	return (res);
 }
 
-uint_t
-octo_sig3(const uint_t x)
+uint32_t
+octo_sig3(const uint32_t x)
 {
-	uint_t	res, tmp;
+	uint32_t	res, tmp;
 
 	tmp = octo_bit_xor(octo_bit_rotr(x, 7), octo_bit_rotr(x, 18));
 
@@ -86,10 +86,10 @@ octo_sig3(const uint_t x)
 	return (res);
 }
 
-uint_t
-octo_sig4(const uint_t x)
+uint32_t
+octo_sig4(const uint32_t x)
 {
-	uint_t	res, tmp;
+	uint32_t	res, tmp;
 
 	tmp = octo_bit_xor(octo_bit_rotr(x, 17), octo_bit_rotr(x, 19));
 

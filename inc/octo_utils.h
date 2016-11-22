@@ -20,14 +20,14 @@
 
 #include <assert.h>
 #include <errno.h>
+#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 
 #define OCTO_BUF_SZ 2048
 #define OCTO_MSG_BLK_SZ 512
-
-typedef unsigned int uint_t;
 
 typedef struct {
 	size_t	size;
@@ -35,26 +35,25 @@ typedef struct {
 	char	*msg;
 } octo_mesg_t;
 
-uint_t octo_bit_or(uint_t a, uint_t b);
-uint_t octo_bit_and(uint_t a, uint_t b);
-uint_t octo_bit_xor(uint_t a, uint_t b);
-uint_t octo_bit_rotl(uint_t a, uint_t pos);
-uint_t octo_bit_rotr(uint_t a, uint_t pos);
-uint_t octo_bit_shl(uint_t a, uint_t pos);
-uint_t octo_bit_shr(uint_t a, uint_t pos);
-uint_t octo_bit_compl(uint_t a);
+uint32_t octo_bit_or(uint32_t a, uint32_t b);
+uint32_t octo_bit_and(uint32_t a, uint32_t b);
+uint32_t octo_bit_xor(uint32_t a, uint32_t b);
+uint32_t octo_bit_rotl(uint32_t a, uint32_t pos);
+uint32_t octo_bit_rotr(uint32_t a, uint32_t pos);
+uint32_t octo_bit_shl(uint32_t a, uint32_t pos);
+uint32_t octo_bit_shr(uint32_t a, uint32_t pos);
+uint32_t octo_bit_compl(uint32_t a);
 
-uint_t octo_ch(const uint_t a, const uint_t b, const uint_t c);
-uint_t octo_maj(const uint_t a, const uint_t b, const uint_t c);
-uint_t octo_sig1(const uint_t x);
-uint_t octo_sig2(const uint_t x);
-uint_t octo_sig3(const uint_t x);
-uint_t octo_sig4(const uint_t x);
+uint32_t octo_ch(const uint32_t a, const uint32_t b, const uint32_t c);
+uint32_t octo_maj(const uint32_t a, const uint32_t b, const uint32_t c);
+uint32_t octo_sig1(const uint32_t x);
+uint32_t octo_sig2(const uint32_t x);
+uint32_t octo_sig3(const uint32_t x);
+uint32_t octo_sig4(const uint32_t x);
 
 void octo_read_msg(octo_mesg_t *msg);
 void octo_hash_compute(octo_mesg_t *msg);
 void *octo_malloc(size_t size);
 int main(int argc, char *argv[]);
-
 void octo_pad_msg(octo_mesg_t *msg);
 #endif /* UTILS_H */

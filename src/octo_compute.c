@@ -21,13 +21,13 @@
 void 
 octo_hash_compute(octo_mesg_t *msg)
 {
-	int *wt;
-	int N;
-	int i, t, iter = 0, count;
-	int a, b, c, d, e, f, g, h;
-	int T1, T2;
+	uint32_t	*wt;
+	int		N;
+	int		i, t, iter = 0, count;
+	uint32_t	a, b, c, d, e, f, g, h;
+	uint32_t	T1, T2;
 
-	wt = (int*)malloc(sizeof(int)*64);
+	wt = (uint32_t *)malloc(sizeof(uint32_t)*64);
 	N = (msg->buf_sz/64);
 
 
@@ -76,7 +76,8 @@ octo_hash_compute(octo_mesg_t *msg)
 		H6 = g + H6;
 		H7 = h + H7;
 	}
-	printf("%0xd%0xd%0xd%0xd%0xd%0xd%0xd%0xd\n", H0, H1, H2, H3, H4, H5, H6, H7);
+	//printf("%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n", H0, H1, H2, H3, H4, H5, H6, H7);
+	printf("%X\n%X\n%X\n%X\n%X\n%X\n%X\n%X\n", H0, H1, H2, H3, H4, H5, H6, H7);
 }
 
 
