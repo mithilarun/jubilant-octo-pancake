@@ -60,7 +60,7 @@ octo_hash_compute(octo_mesg_t *msg)
 			h = g;
 			g = f;
 			f = e;
-			e = d + T1; 
+			e = d + T1;
 			d = c;
 			c = b;
 			b = a;
@@ -77,7 +77,7 @@ octo_hash_compute(octo_mesg_t *msg)
 		H7 = h + H7;
 	}
 	//printf("%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n", H0, H1, H2, H3, H4, H5, H6, H7);
-	printf("%X\n%X\n%X\n%X\n%X\n%X\n%X\n%X\n", H0, H1, H2, H3, H4, H5, H6, H7);
+	printf("%x\n%x\n%x\n%x\n%x\n%x\n%x\n%x\n", H0, H1, H2, H3, H4, H5, H6, H7);
 }
 
 

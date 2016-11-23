@@ -32,8 +32,8 @@ octo_ch(const uint32_t a, const uint32_t b, const uint32_t c)
 {
 	uint32_t	res;
 
-	res = octo_bit_xor(octo_bit_or(a, b),
-	    octo_bit_or(octo_bit_compl(a), c));
+	res = octo_bit_xor(octo_bit_and(a, b),
+	    octo_bit_and(octo_bit_compl(a), c));
 
 	return (res);
 }
@@ -43,9 +43,9 @@ octo_maj(const uint32_t a, const uint32_t b, const uint32_t c)
 {
 	uint32_t	res, tmp;
 
-	tmp = octo_bit_xor(octo_bit_or(a, b), octo_bit_or(a, c));
+	tmp = octo_bit_xor(octo_bit_and(a, b), octo_bit_and(a, c));
 
-	res = octo_bit_xor(tmp, octo_bit_or(b, c));
+	res = octo_bit_xor(tmp, octo_bit_and(b, c));
 
 	return (res);
 }

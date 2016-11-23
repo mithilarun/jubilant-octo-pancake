@@ -20,7 +20,7 @@
 uint32_t
 octo_bit_rotr(uint32_t a, uint32_t b)
 {
-	a = (((a) >> (b)) | ((a) << (32-(b))));  //Rotate Right
+	a = (((a) >> (b)) | ((a) << ((sizeof (uint32_t) * 8)-(b))));  //Rotate Right
 
 	return (a);
 }
@@ -28,7 +28,7 @@ octo_bit_rotr(uint32_t a, uint32_t b)
 uint32_t
 octo_bit_rotl(uint32_t a, uint32_t b)
 {
-	a = (((a) << (b)) | ((a) >> (32-(b))));  //Rotate Left
+	a = (((a) << (b)) | ((a) >> ((sizeof (uint32_t) * 8)-(b))));  //Rotate Left
 
 	return (a);
 }

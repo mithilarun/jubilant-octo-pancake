@@ -20,24 +20,16 @@
 void
 octo_pad_msg(octo_mesg_t *msg)
 {
-	int		m_len, rem, shift;
-	uint32_t	*iter = (uint32_t *)msg->msg;
-	int		i;
-	char		*tmp;
+	char		*iter;
+	uint64_t	*lptr;
+	uint64_t	l;
 
-	m_len = (msg->size * 8);
-	if(m_len % 32 == 0) {
-		tmp = msg->msg + msg->size + 1;
-		tmp[0] = 0x80;
-	} else {
-		rem = m_len % 32;
-		shift = 0x1;
-		for(i = 0;i < (m_len / 32);i++){
-			iter = iter + 1;
-		}
-		shift = octo_bit_shl(shift, (32 - rem - 1));
-		octo_bit_or(*iter, shift);
-	}
-	iter = (uint32_t *)(msg->msg + msg->buf_sz) - 2;
-	*iter = (uint64_t)m_len;
+	iter = msg->msg + msg->size;
+	*iter = 128;	// 128 is 10000000 in binary
+
+	iter = msg->msg + msg->buf_sz - 8;	// Need to store <l>
+
+	l = msg->size * 8;
+	lptr = (uint64_t *)iter;
+	*lptr = l;
 }
