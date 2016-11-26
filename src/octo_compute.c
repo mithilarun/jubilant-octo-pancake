@@ -17,13 +17,14 @@
 
 #include "octo_const.h"
 #include "octo_utils.h"
+#include <math.h>
 
-void 
+void
 octo_hash_compute(octo_mesg_t *msg)
 {
-	uint32_t	*wt;
+	uint32_t	*wt, *iter;
 	int		N;
-	int		i, t, iter = 0, count;
+	int		i, t, count;
 	uint32_t	a, b, c, d, e, f, g, h;
 	uint32_t	T1, T2;
 
@@ -31,14 +32,14 @@ octo_hash_compute(octo_mesg_t *msg)
 	N = (msg->buf_sz/64);
 
 
-	for(i = 0; i < N; i++)
-	{
+	for(i = 0; i < N; i++) {
 		count  = 0;
+		iter = (uint32_t *)msg->msg + 16 * i;
 		do {
-			wt[count] = msg->msg[iter];
+			wt[count] = *iter;
 			iter++;
 			count++;
-		} while((iter % 16) != 0);
+		} while((count % 16) != 0);
 
 		for (count = 16; count < 64; count++) {
 			wt[count] = octo_sig4(wt[count-2]) + wt[count-7] +
@@ -76,8 +77,8 @@ octo_hash_compute(octo_mesg_t *msg)
 		H6 = g + H6;
 		H7 = h + H7;
 	}
-	//printf("%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n%" PRIu32 "\n", H0, H1, H2, H3, H4, H5, H6, H7);
-	printf("%x\n%x\n%x\n%x\n%x\n%x\n%x\n%x\n", H0, H1, H2, H3, H4, H5, H6, H7);
+	printf("%08x%08x%08x%08x%08x%08x%08x%08x\n", H0, H1, H2, H3, H4, H5, H6, H7);
 }
+
 
 

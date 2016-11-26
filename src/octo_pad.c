@@ -25,11 +25,11 @@ octo_pad_msg(octo_mesg_t *msg)
 	uint64_t	l;
 
 	iter = msg->msg + msg->size;
-	*iter = 128;	// 128 is 10000000 in binary
+	*iter = (uint64_t)128;	// 128 is 10000000 in binary
 
 	iter = msg->msg + msg->buf_sz - 8;	// Need to store <l>
 
-	l = msg->size * 8;
+	l = (uint64_t)msg->size * 8;
 	lptr = (uint64_t *)iter;
 	*lptr = l;
 }
