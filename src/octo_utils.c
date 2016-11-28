@@ -23,7 +23,10 @@ octo_malloc(size_t size)
 	void *tmp;
 
 	tmp = (void *)malloc(size);
-	bzero(tmp, size);
+	if (tmp == NULL) {
+		exit(EXIT_FAILURE);
+	}
+	bzero(tmp, (int)size);
 	return (tmp);
 }
 

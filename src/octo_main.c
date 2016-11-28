@@ -32,23 +32,34 @@ octo_read_msg(octo_mesg_t *msg)
 	char	*tok, *tmp;
 
 	printf("Enter file name\n");
-	scanf("%s", fname);
+	if (scanf("%s", fname) == EOF) {
+		printf("Error: %s\n", strerror(errno));
+		exit(EXIT_FAILURE);
+	}
 
 	// Need to get size of data in file (# chars)
-	snprintf(wc_cmd, sizeof (wc_cmd), "/usr/bin/wc -c %s", fname);
+	if (snprintf(wc_cmd, sizeof (wc_cmd), "/usr/bin/wc -c %s", fname)
+	    < 0) {
+		printf("Failed to get size of file.\n.");
+		exit(EXIT_FAILURE);
+	}
+
 	fp = popen(wc_cmd, "r");
 	if (fp == NULL) {
 		printf("Failed to fetch size of file\n. Exiting.\n");
-		exit(-1);
+		exit(EXIT_FAILURE);
 	}
 
-	while (fgets(wc_out, sizeof(wc_out) - 1, fp) != NULL);
-	pclose(fp);
+	while (fgets(wc_out, (int)sizeof(wc_out) - 1, fp) != NULL);
+	if (pclose(fp) == -1) {
+		printf("Error: %s\n", strerror(errno));
+		exit(EXIT_FAILURE);
+	}
 
 	tok = strtok(wc_out, " ");
 	if (tok == NULL) {
 		printf("Failed to parse char count\n");
-		exit(-1);
+		exit(EXIT_FAILURE);
 	}
 	msg->size = (size_t)atoi(tok);
 
@@ -67,16 +78,16 @@ octo_read_msg(octo_mesg_t *msg)
 	mfile = fopen(fname, "r");
 	if (mfile == NULL) {
 		printf("Failed to open file %s\n", fname);
-		exit(-1);
+		exit(EXIT_FAILURE);
 	}
-	while (fgets(tmp, msg->size - count, mfile) != NULL) {
+	while (fgets(tmp, (int)msg->size - count, mfile) != NULL) {
 		count += strlen(tmp) - 1;
 		tmp = tmp + strlen(tmp);
 	}
 
 	if (fclose(mfile) != 0) {
 		printf("Error: %s", strerror(errno));
-		exit(-1);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -84,13 +95,19 @@ octo_read_msg(octo_mesg_t *msg)
 
 
 int
-main(int argc, char *argv[])
+main(void)
 {
-	octo_mesg_t	msg;
+	octo_mesg_t	*msg;
 
-	octo_read_msg(&msg);
-	octo_pad_msg(&msg);
-	octo_hash_compute(&msg);
+	msg = (octo_mesg_t *)octo_malloc(sizeof (octo_mesg_t));
+	octo_read_msg(msg);
+	octo_pad_msg(msg);
+	octo_hash_compute(msg);
 
+	/*
+	 * Clean up any allocated memory
+	 */
+	free(msg->msg);
+	free(msg);
 	return (0);
 }

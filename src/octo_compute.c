@@ -28,8 +28,8 @@ octo_hash_compute(octo_mesg_t *msg)
 	uint32_t	a, b, c, d, e, f, g, h;
 	uint32_t	T1, T2;
 
-	wt = (uint32_t *)malloc(sizeof(uint32_t)*64);
-	N = (msg->buf_sz/64);
+	wt = (uint32_t *)octo_malloc(sizeof(uint32_t)*64);
+	N = (int)(msg->buf_sz/64);
 
 
 	for(i = 0; i < N; i++) {
@@ -78,6 +78,7 @@ octo_hash_compute(octo_mesg_t *msg)
 		H7 = h + H7;
 	}
 	printf("%08x%08x%08x%08x%08x%08x%08x%08x\n", H0, H1, H2, H3, H4, H5, H6, H7);
+	free(wt);
 }
 
 

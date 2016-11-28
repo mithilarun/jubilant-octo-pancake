@@ -29,7 +29,7 @@
 #define OCTO_BUF_SZ 2048
 #define OCTO_MSG_BLK_SZ 512
 
-typedef struct {
+typedef struct octo_mesg_s {
 	size_t	size;
 	size_t	buf_sz;
 	char	*msg;
@@ -54,6 +54,6 @@ uint32_t octo_sig4(const uint32_t x);
 void octo_read_msg(octo_mesg_t *msg);
 void octo_hash_compute(octo_mesg_t *msg);
 void *octo_malloc(size_t size);
-int main(int argc, char *argv[]);
+int main(void);
 void octo_pad_msg(octo_mesg_t *msg);
 #endif /* UTILS_H */
