@@ -24,6 +24,7 @@ octo_malloc(size_t size)
 
 	tmp = (void *)malloc(size);
 	if (tmp == NULL) {
+		printf("CRITICAL: Memory allocation failed.\n");
 		exit(EXIT_FAILURE);
 	}
 	bzero(tmp, (int)size);
