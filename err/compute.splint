@@ -1,0 +1,41 @@
+octo_compute.c: (in function octo_hash_compute)
+octo_compute.c:32:2: Assignment of arbitrary unsigned integral type to int:
+                        N = (msg->buf_sz / 64)
+  To allow arbitrary integral types to match any integral type, use
+  +matchanyintegral.
+octo_compute.c:39:4: Index of possibly null pointer wt: wt
+  A possibly null pointer is dereferenced.  Value is either the result of a
+  function which may return null (in which case, code should check it is not
+  null), or a global, parameter or structure field declared with the null
+  qualifier. (Use -nullderef to inhibit warning)
+   octo_compute.c:31:7: Storage wt may become null
+octo_compute.c:80:47: Format argument 1 to printf (%08x) expects unsigned int
+                         gets uint32_t: H0
+   octo_compute.c:80:13: Corresponding format code
+octo_compute.c:80:51: Format argument 2 to printf (%08x) expects unsigned int
+                         gets uint32_t: H1
+   octo_compute.c:80:17: Corresponding format code
+octo_compute.c:80:55: Format argument 3 to printf (%08x) expects unsigned int
+                         gets uint32_t: H2
+   octo_compute.c:80:21: Corresponding format code
+octo_compute.c:80:59: Format argument 4 to printf (%08x) expects unsigned int
+                         gets uint32_t: H3
+   octo_compute.c:80:25: Corresponding format code
+octo_compute.c:80:63: Format argument 5 to printf (%08x) expects unsigned int
+                         gets uint32_t: H4
+   octo_compute.c:80:29: Corresponding format code
+octo_compute.c:80:67: Format argument 6 to printf (%08x) expects unsigned int
+                         gets uint32_t: H5
+   octo_compute.c:80:33: Corresponding format code
+octo_compute.c:80:71: Format argument 7 to printf (%08x) expects unsigned int
+                         gets uint32_t: H6
+   octo_compute.c:80:37: Corresponding format code
+octo_compute.c:80:75: Format argument 8 to printf (%08x) expects unsigned int
+                         gets uint32_t: H7
+   octo_compute.c:80:41: Corresponding format code
+octo_compute.c:81:2: Fresh storage wt not released before return
+  A memory leak has been detected. Storage allocated locally is not released
+  before the last reference to it is lost. (Use -mustfreefresh to inhibit
+  warning)
+   octo_compute.c:31:2: Fresh storage wt created
+

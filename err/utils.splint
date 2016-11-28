@@ -1,0 +1,16 @@
+octo_utils.c: (in function octo_malloc)
+octo_utils.c:26:2: Unrecognized identifier: bzero
+  Identifier used in code has not been declared. (Use -unrecog to inhibit
+  warning)
+octo_utils.c:27:9: Possibly null storage tmp returned as non-null: (tmp)
+  Function returns a possibly null pointer, but is not declared using
+  /*@null@*/ annotation of result.  If function may return NULL, add /*@null@*/
+  annotation to the return value declaration. (Use -nullret to inhibit warning)
+   octo_utils.c:25:8: Storage tmp may become null
+octo_utils.c:27:9: Returned storage tmp not completely defined (*tmp is
+                      undefined): (tmp)
+  Storage derivable from a parameter, return value or global is not defined.
+  Use /*@out@*/ to denote passed or returned storage which need not be defined.
+  (Use -compdef to inhibit warning)
+   octo_utils.c:25:2: Storage *tmp allocated
+
