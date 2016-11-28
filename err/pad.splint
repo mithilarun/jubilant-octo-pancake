@@ -1,0 +1,4 @@
+octo_pad.c: (in function octo_pad_msg)
+octo_pad.c:28:2: Assignment of uint64_t to char: *iter = (uint64_t)128
+  Types are incompatible. (Use -type to inhibit warning)
+
