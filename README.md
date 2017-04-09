@@ -1,5 +1,5 @@
-SHA256
-------
+SHA-256
+=======
 
 This repository tracks the implementation of the SHA256 hashing algorithm as a part of CSE539 - Applied Cryptography.
 
@@ -23,6 +23,6 @@ make clean
 
 Contributors
 ------------
-Mithil Arun
-Ambarish Ravindran
-Vineet Mishra
+* Mithil Arun
+* Ambarish Ravindran
+* Vineet Mishra
